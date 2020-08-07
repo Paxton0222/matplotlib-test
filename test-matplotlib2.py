@@ -12,4 +12,4 @@ x = x.to_timestamp().to_pydatetime()
 # 產生三組，每組 200 個隨機常態分布元素
 y = np.random.randn(200, 3).cumsum(0)
 plt.plot(x, y)
-plt.show()
+plt.show()#21
