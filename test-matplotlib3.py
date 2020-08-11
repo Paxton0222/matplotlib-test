@@ -34,3 +34,4 @@ dict1 = {fields[0]:list0,fields[1]:list1,fields[2]:list2,fields[3]:list3,fields[
 df = pd.DataFrame(dict1)
 df2 = df.set_index('日期')
 print(df2)
+df.to_csv('test.csv')
