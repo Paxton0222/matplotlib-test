@@ -1,6 +1,6 @@
 import matplotlib.pylab as plt
 import pandas as pd
-import requests,sqlite3
+import requests,sqlite3,os
 from bs4 import BeautifulSoup
 
 def main_data(url):
@@ -53,7 +53,7 @@ def create_table(dir):
     except:
         pass
 
-def write_data(url):
+def write_data(url,dir1):
     data = main_data(url)
     len_=  len(data.loc[0:])
     len_1 = len(data.loc[0][0:])
@@ -94,8 +94,13 @@ def write_data(url):
         x+=1
     conn.close()
 
-if __name__ == "__main__":
-    url = "https://www.twse.com.tw/exchangeReport/FMTQIK?response=json&date=20200701"
+def to_sql():
+    date = ['20200101','20200201','20200301','20200401','20200501','20200601','20200701','20200801']
     dir1 = "test.sqlite"
-    create_table(dir1)
-    write_data(url)
+    for i in date:
+        url = "https://www.twse.com.tw/exchangeReport/FMTQIK?response=json&date={date}".format(date=i)
+        create_table(dir1)
+        write_data(url,dir1)
+
+if __name__ == "__main__":
+    pass
