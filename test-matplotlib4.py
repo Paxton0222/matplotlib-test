@@ -2,8 +2,7 @@ import matplotlib.pylab as plt
 import pandas as pd
 import requests,sqlite3
 from bs4 import BeautifulSoup
-url = "https://www.twse.com.tw/exchangeReport/FMTQIK?response=json&date=20200701"
-dir1 = "test.sqlite"
+
 def main_data(url):
     r = requests.get(url)
     r = r.json()
@@ -54,7 +53,7 @@ def create_table(dir):
     except:
         pass
 
-def write_data():
+def write_data(url):
     data = main_data(url)
     len_=  len(data.loc[0:])
     len_1 = len(data.loc[0][0:])
@@ -96,5 +95,7 @@ def write_data():
     conn.close()
 
 if __name__ == "__main__":
+    url = "https://www.twse.com.tw/exchangeReport/FMTQIK?response=json&date=20200701"
+    dir1 = "test.sqlite"
     create_table(dir1)
-    write_data()
+    write_data(url)
