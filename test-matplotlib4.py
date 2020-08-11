@@ -1,6 +1,6 @@
 import matplotlib.pylab as plt
 import pandas as pd
-import requests,sqlite3,os
+import requests,sqlite3,string
 from bs4 import BeautifulSoup
 
 def main_data(url):
@@ -94,13 +94,60 @@ def write_data(url,dir1):
         x+=1
     conn.close()
 
-def to_sql():
+def to_sql(dir1):
     date = ['20200101','20200201','20200301','20200401','20200501','20200601','20200701','20200801']
+    date = ['20200701']
     dir1 = "test.sqlite"
     for i in date:
         url = "https://www.twse.com.tw/exchangeReport/FMTQIK?response=json&date={date}".format(date=i)
         create_table(dir1)
         write_data(url,dir1)
 
+def read_sql(dir1,data):
+    conn = sqlite3.connect(dir1)
+    cursor = conn.execute("SELECT 日期,{} FROM data".format(data))
+    l0,l1 = [],[]
+    for row in cursor:
+        l0.append(row[0])
+        l1.append(row[1])
+    conn.close()
+    return l0,l1
+
+def data1(dir1): #成交筆數
+    data = read_sql(dir1,'成交筆數')
+    date = data[0]
+    data_list = data[1]
+    ndata_list = []
+    for i in data_list:
+        data = i.replace(',','')
+        ndata_list.append(int(data))
+    plt.title('One-month number of stock transactions')
+    plt.xlabel('Days')
+    plt.ylabel('Number of transactions')
+    plt.plot(date,ndata_list,'o--r')
+    plt.xticks(fontsize = 7)
+    plt.grid(True)
+    plt.show()
+
+def data2(dir1): #發行量加權股價指數
+    data = read_sql(dir1,'發行量加權股價指數')
+    date = data[0]
+    data_list = data[1]
+    ndata_list = []
+    for i in data_list:
+        data = i.replace(',','')
+        ndata_list.append(float(data))
+    plt.title('One-month issuance weighted stock price index')
+    plt.xlabel('Days')
+    plt.ylabel('Issuance weighted stock index')
+    plt.plot(date,ndata_list,'o--r')
+    plt.xticks(fontsize = 7)
+    plt.grid(True)
+    plt.show()
+
+
 if __name__ == "__main__":
-    pass
+    dir1 = 'test.sqlite'
+    #to_sql(dir1)
+    #data1(dir1)
+    #data2(dir1)
