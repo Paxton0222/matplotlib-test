@@ -101,7 +101,7 @@ class Get_data:
             os.remove(dir1)
         except:
             pass
-        self.date = year+'0'+month
+        self.date = year+month
         self.date = [self.date]
         for self.i in self.date:
             self.url = "https://www.twse.com.tw/exchangeReport/FMTQIK?response=json&date={date}01".format(date=self.i)
