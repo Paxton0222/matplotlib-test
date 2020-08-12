@@ -1,6 +1,8 @@
 這是一個matplotlib練習檔案
 
-* 如果需要使用完整版請使用 [test-matplotlib4.py](./test-matplotlib4.py)
+* 如果需要使用完整版請使用 [test_matplotlib4.py](./test_matplotlib4.py)
+
+* 如需使用GUI操作請使用 [testgui.py](./testgui.py)
 
 * to_sql(dir,date) 使用to_sql函式下載資料至資料庫
 
