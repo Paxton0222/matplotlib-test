@@ -1,7 +1,14 @@
-from PyQt5 import QtCore, QtGui, QtWidgets
-import sys,os
-sys.path.append('./test_matplotlib4.py')
-from test_matplotlib4 import Get_data
+try:
+    from PyQt5 import QtCore, QtGui, QtWidgets
+    import sys,os
+    sys.path.append('./test_matplotlib4.py')
+    from test_matplotlib4 import Get_data
+except:
+    import sys,os
+    os.system('pip3 install pyqt5')
+    from PyQt5 import QtCore, QtGui, QtWidgets
+    sys.path.append('./test_matplotlib4.py')
+    from test_matplotlib4 import Get_data
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
