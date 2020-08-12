@@ -112,6 +112,20 @@ def read_sql(dir1,data):
     conn.close()
     return l0,l1
 
+def read_all_sql(dir1):
+    conn = sqlite3.connect(dir1)
+    cursor = conn.execute("SELECT * FROM data")
+    l0,l1,l2,l3,l4,l5 = [],[],[],[],[],[]
+    for row in cursor:
+        l0.append(row[0])
+        l1.append(row[1])
+        l2.append(row[2])
+        l3.append(row[3])
+        l4.append(row[4])
+        l5.append(row[5])
+    conn.close()
+    return l0,l1,l2,l3,l4,l5
+
 def data1(dir1): #成交筆數
     data = read_sql(dir1,'成交筆數')
     date = data[0]
@@ -194,9 +208,11 @@ def data5(dir1): #成交股數
 
 if __name__ == "__main__":
     dir1 = 'test.sqlite' #資料庫路徑(不須更改)
-    date = '20200401' #更改日期 格式(20200701)
+    #date = '20191201' #更改日期 格式(20200701)
+    date = input('請輸入您的日期,格式(20200701):')
     to_sql(dir1,date) #必須先寫入資料庫中才可讀取data
-    data1(dir1) #成交筆數
+    #print(read_all_sql(dir1)) #讀取sql中所有資料
+    #data1(dir1) #成交筆數
     #data2(dir1) #發行量加權股價指數
     #data3(dir1) #漲跌點數
     #data4(dir1) #成交金額
