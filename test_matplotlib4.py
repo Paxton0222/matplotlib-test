@@ -96,14 +96,15 @@ class Get_data:
             self.x+=1
         self.conn.close()
 
-    def to_sql(self,dir1,date):
+    def to_sql(self,dir1,year,month):
         try:
             os.remove(dir1)
         except:
             pass
-        self.date = [date]
+        self.date = year+'0'+month
+        self.date = [self.date]
         for self.i in self.date:
-            self.url = "https://www.twse.com.tw/exchangeReport/FMTQIK?response=json&date={date}".format(date=self.i)
+            self.url = "https://www.twse.com.tw/exchangeReport/FMTQIK?response=json&date={date}01".format(date=self.i)
             self.create_table(dir1)
             self.write_data(self.url,dir1)
 
@@ -213,13 +214,14 @@ class Get_data:
 
 if __name__ == "__main__":
     dir1 = 'test.sqlite' #資料庫路徑(不須更改)
-    date = '20191201' #更改日期 格式(20200701)
-    #date = input('請輸入您的日期,格式(20200701):')
-    #get = Get_data()
-    #get.to_sql(dir1,date) #必須先寫入資料庫中才可讀取data
-    #print(get.read_all_sql(dir1)) #讀取sql中所有資料
+    year = '2019' #更改日期 
+    month = '1'
+    get = Get_data()
+    get.to_sql(dir1,year,month) #必須先寫入資料庫中才可讀取data
+    print(get.read_all_sql(dir1)) #讀取sql中所有資料
     #get.data1(dir1) #成交筆數
     #get.data2(dir1) #發行量加權股價指數
     #get.data3(dir1) #漲跌點數
     #get.data4(dir1) #成交金額
     #get.data5(dir1) #成交股數
+    
