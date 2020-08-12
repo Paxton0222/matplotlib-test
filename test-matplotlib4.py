@@ -145,9 +145,59 @@ def data2(dir1): #發行量加權股價指數
     plt.grid(True)
     plt.show()
 
+def data3(dir1):
+    data = read_sql(dir1,'漲跌點數')
+    date = data[0]
+    data_list = data[1]
+    ndata_list = []
+    for i in data_list:
+        data = i.replace(',','')
+        ndata_list.append(float(data))
+    plt.title('Change points in a month')
+    plt.xlabel('Days')
+    plt.ylabel('Change points')
+    plt.plot(date,ndata_list,'o--r')
+    plt.xticks(fontsize = 7)
+    plt.grid(True)
+    plt.show()
+
+def data4(dir1):
+    data = read_sql(dir1,'成交金額')
+    date = data[0]
+    data_list = data[1]
+    ndata_list = []
+    for i in data_list:
+        data = i.replace(',','')
+        ndata_list.append(int(data))
+    plt.title('One month transaction amount')
+    plt.xlabel('Days')
+    plt.ylabel('Turnover')
+    plt.plot(date,ndata_list,'o--r')
+    plt.xticks(fontsize=7)
+    plt.grid(True)
+    plt.show()    
+
+def data5(dir1):
+    data = read_sql(dir1,'成交股數')
+    date = data[0]
+    data_list = data[1]
+    ndata_list = []
+    for i in data_list:
+        data = i.replace(',','')
+        ndata_list.append(int(data))
+    plt.title('')
+    plt.xlabel('')
+    plt.ylabel('')
+    plt.plot(date,ndata_list,'o--r')
+    plt.xticks(fontsize=7)
+    plt.grid(True)
+    plt.show()
 
 if __name__ == "__main__":
     dir1 = 'test.sqlite'
-    #to_sql(dir1)
+    #to_sql(dir1) #必須先寫入資料庫中才可讀取data
     #data1(dir1)
     #data2(dir1)
+    #data3(dir1)
+    #data4(dir1)
+    #data5(dir1)
