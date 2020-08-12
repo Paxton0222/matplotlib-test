@@ -212,7 +212,7 @@ if __name__ == "__main__":
     date = input('請輸入您的日期,格式(20200701):')
     to_sql(dir1,date) #必須先寫入資料庫中才可讀取data
     #print(read_all_sql(dir1)) #讀取sql中所有資料
-    #data1(dir1) #成交筆數
+    data1(dir1) #成交筆數
     #data2(dir1) #發行量加權股價指數
     #data3(dir1) #漲跌點數
     #data4(dir1) #成交金額
