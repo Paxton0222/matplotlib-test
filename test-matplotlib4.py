@@ -1,6 +1,6 @@
 import matplotlib.pylab as plt
 import pandas as pd
-import requests,sqlite3,string
+import requests,sqlite3,string,os
 from bs4 import BeautifulSoup
 
 def main_data(url):
@@ -94,10 +94,9 @@ def write_data(url,dir1):
         x+=1
     conn.close()
 
-def to_sql(dir1):
-    date = ['20200101','20200201','20200301','20200401','20200501','20200601','20200701','20200801']
-    date = ['20200701']
-    dir1 = "test.sqlite"
+def to_sql(dir1,date):
+    os.remove(dir1)
+    date = [date]
     for i in date:
         url = "https://www.twse.com.tw/exchangeReport/FMTQIK?response=json&date={date}".format(date=i)
         create_table(dir1)
@@ -145,7 +144,7 @@ def data2(dir1): #發行量加權股價指數
     plt.grid(True)
     plt.show()
 
-def data3(dir1):
+def data3(dir1): #漲跌點數
     data = read_sql(dir1,'漲跌點數')
     date = data[0]
     data_list = data[1]
@@ -161,7 +160,7 @@ def data3(dir1):
     plt.grid(True)
     plt.show()
 
-def data4(dir1):
+def data4(dir1): #成交金額
     data = read_sql(dir1,'成交金額')
     date = data[0]
     data_list = data[1]
@@ -177,7 +176,7 @@ def data4(dir1):
     plt.grid(True)
     plt.show()    
 
-def data5(dir1):
+def data5(dir1): #成交股數
     data = read_sql(dir1,'成交股數')
     date = data[0]
     data_list = data[1]
@@ -185,19 +184,20 @@ def data5(dir1):
     for i in data_list:
         data = i.replace(',','')
         ndata_list.append(int(data))
-    plt.title('')
-    plt.xlabel('')
-    plt.ylabel('')
+    plt.title('Number of shares traded in a month')
+    plt.xlabel('Days')
+    plt.ylabel('Number of shares traded')
     plt.plot(date,ndata_list,'o--r')
     plt.xticks(fontsize=7)
     plt.grid(True)
     plt.show()
 
 if __name__ == "__main__":
-    dir1 = 'test.sqlite'
-    #to_sql(dir1) #必須先寫入資料庫中才可讀取data
-    #data1(dir1)
-    #data2(dir1)
-    #data3(dir1)
-    #data4(dir1)
-    #data5(dir1)
+    dir1 = 'test.sqlite' #資料庫路徑(不須更改)
+    date = '20200401' #更改日期 格式(20200701)
+    to_sql(dir1,date) #必須先寫入資料庫中才可讀取data
+    data1(dir1) #成交筆數
+    #data2(dir1) #發行量加權股價指數
+    #data3(dir1) #漲跌點數
+    #data4(dir1) #成交金額
+    #data5(dir1) #成交股數
