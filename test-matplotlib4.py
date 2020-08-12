@@ -213,10 +213,10 @@ class Get_data:
 
 if __name__ == "__main__":
     dir1 = 'test.sqlite' #資料庫路徑(不須更改)
-    #date = '20191201' #更改日期 格式(20200701)
-    date = input('請輸入您的日期,格式(20200701):')
-    get = Get_data()
-    get.to_sql(dir1,date) #必須先寫入資料庫中才可讀取data
+    date = '20191201' #更改日期 格式(20200701)
+    #date = input('請輸入您的日期,格式(20200701):')
+    #get = Get_data()
+    #get.to_sql(dir1,date) #必須先寫入資料庫中才可讀取data
     #print(get.read_all_sql(dir1)) #讀取sql中所有資料
     #get.data1(dir1) #成交筆數
     #get.data2(dir1) #發行量加權股價指數
