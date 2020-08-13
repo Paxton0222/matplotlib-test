@@ -224,4 +224,3 @@ if __name__ == "__main__":
     #get.data3(dir1) #漲跌點數
     #get.data4(dir1) #成交金額
     #get.data5(dir1) #成交股數
-    
