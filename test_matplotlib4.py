@@ -6,7 +6,8 @@ class Get_data:
     def __init__(self):
         pass
     def main_data(self,url):
-        self.r = requests.get(url)
+        self.ip = {'https:':'http://51.254.35.77:8080'}
+        self.r = requests.get(url,proxies=self.ip)
         self.r = self.r.json()
         self.title = self.r['title'] #標題
         self.fields = self.r['fields'] #欄位

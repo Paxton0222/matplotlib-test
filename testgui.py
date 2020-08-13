@@ -195,7 +195,6 @@ class Ui_MainWindow(object):
         self.textBrowser.insertPlainText(self.text_year)
         self.textBrowser.insertPlainText(self.text_month)
         self.dir = "test.sqlite"
-        time.sleep(1)
         self.get = Get_data()
         try:
             self.get.to_sql(self.dir,self.text_year1,self.text_month1)
@@ -211,7 +210,6 @@ class Ui_MainWindow(object):
             elif self.text == "成交股數":
                 self.get.data5(self.dir)
             self.textBrowser.moveCursor(self.textBrowser.textCursor().End) #將textBrowser滾動至底部
-            
         except:
             self.textBrowser.append('不存在的日期!')
 
