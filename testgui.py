@@ -198,6 +198,7 @@ class Ui_MainWindow(object):
         self.get = Get_data()
         try:
             self.get.to_sql(self.dir,self.text_year1,self.text_month1)
+            self.textBrowser.append('查找成功!')
             if self.text == "成交筆數":
                 self.get.data1(self.dir)
             elif self.text == "發行量加權股價指數":
@@ -210,7 +211,6 @@ class Ui_MainWindow(object):
                 self.get.data5(self.dir)
         except:
             self.textBrowser.append('不存在的日期!')
-        
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
