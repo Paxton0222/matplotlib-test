@@ -4,6 +4,8 @@
 
 * 如需使用GUI操作請使用 [testgui.py](./testgui.py)
 
+* 如果使用GUI操作典籍次數請勿太頻繁!如太頻繁有可能會被封鎖ip!
+
 * to_sql(dir,date) 使用to_sql函式下載資料至資料庫
 
 * data1() 成交筆數
