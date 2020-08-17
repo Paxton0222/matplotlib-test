@@ -1,4 +1,3 @@
-import matplotlib.pylab as plt
 import pandas as pd
 import requests,sqlite3
 from bs4 import BeautifulSoup
